@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disruption Discernment Radar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Disruption Discernment Radar</h1>
+            <form id="analysisForm">
+                <textarea id="inputText" placeholder="Enter your paragraph here..."></textarea>
+                <div class="button-container">
+                    <button type="button" onclick="analyzeText()">Analyze</button>
+                </div>
+            </form>
+            <div id="result"></div>
+            <div id="segment-definition" class="segment-definition-container hidden"></div>
+            <div id="quadrant-container" class="hidden">
+                <div id="quadrant">
+                    <div class="axis horizontal"></div>
+                    <div class="axis vertical"></div>
+                    <div class="arrow horizontal right"></div>
+                    <div class="arrow horizontal left"></div>
+                    <div class="arrow vertical top"></div>
+                    <div class="arrow vertical bottom"></div>
+                    <div class="ring inner"></div>
+                    <div class="ring middle"></div>
+                    <div class="ring outer"></div>
+                </div>
+                <div class="label top">Change-Seeking</div>
+                <div class="label bottom">Change-Averse</div>
+                <div class="label left">Individualistic</div>
+                <div class="label right">Communal</div>
+                
+            </div>
+            <div id="chart-container" class="hidden">
+                <table>
+                    <tbody id="chart-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

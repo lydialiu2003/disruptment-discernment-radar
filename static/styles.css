@@ -1,0 +1,358 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+    padding-right: 20px; /* Added padding to move the form away from the edge */
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid rgb(202, 182, 182);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ff9a75;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ffd678;
+}
+
+#result {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 18px;
+    color: rgb(68, 11, 181);
+}
+
+#quadrant-container.hidden {
+    display: none;
+}
+
+#quadrant-container {
+    width: 400px;
+    height: 400px;
+    margin-top: 20px;
+    position: relative;
+}
+
+#quadrant {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #fff;
+}
+
+.axis {
+    position: absolute;
+    background: #333;
+}
+
+.axis.horizontal {
+    height: 2px;
+    width: 100%;
+    top: 50%;
+}
+
+.axis.vertical {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-1px);
+}
+
+.arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.arrow.horizontal.right {
+    top: 50%;
+    right: -10px;
+    border-width: 5px 0 5px 10px;
+    border-color: transparent transparent transparent #333;
+    transform: translateY(-50%);
+}
+
+.arrow.horizontal.left {
+    top: 50%;
+    left: -10px;
+    border-width: 5px 10px 5px 0;
+    border-color: transparent #333 transparent transparent;
+    transform: translateY(-50%);
+}
+
+.arrow.vertical.top {
+    bottom: -10px;
+    left: 50%;
+    border-width: 10px 5px 0 5px;
+    border-color: #333 transparent transparent transparent;
+    transform: translateX(-50%);
+}
+
+.arrow.vertical.bottom {
+    top: -10px;
+    left: 50%;
+    border-width: 0 5px 10px 5px;
+    border-color: transparent transparent #333 transparent;
+    transform: translateX(-50%);
+}
+
+.point {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(255, 32, 32);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 200px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.point:hover .tooltip {
+    opacity: 1;
+}
+
+.label {
+    position: absolute;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.label.top {
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.label.bottom {
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.label.left {
+    top: 53%;
+    left: -40px;
+    transform: translateY(-50%);
+}
+
+.label.right {
+    top: 53%;
+    right: -40px;
+    transform: translateY(-50%);
+}
+
+/* Add styles for rings */
+.ring {
+    position: absolute;
+    border: 2px solid rgb(197, 56, 56);
+    border-radius: 50%;
+}
+
+.ring.inner {
+    width: 133px;
+    height: 133px;
+    top: calc(50% - 66.5px);
+    left: calc(50% - 66.5px);
+}
+
+.ring.middle {
+    width: 266px;
+    height: 266px;
+    top: calc(50% - 133px);
+    left: calc(50% - 133px);
+}
+
+.ring.outer {
+    width: 400px;
+    height: 400px;
+    top: 0;
+    left: 0;
+}
+
+/* Style segment labels */
+.segment-label {
+    position: absolute;
+    font-size: 12px;
+    text-align: center;
+    width: 100px;
+    height: 20px;
+}
+
+/* Add positions for segment labels */
+#segment-sparker {
+    top: 45%;
+    left: 43%;
+    transform: translate(-50%, -50%);
+}
+
+#segment-accelerant {
+    top: 33%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+}
+
+#segment-trailblazer {
+    top: 15%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+
+#segment-illuminator {
+    top: 33%;
+    right: 35%;
+    transform: translate(50%, -50%);
+}
+
+#segment-stoker {
+    top: 45%;
+    right: 43%;
+    transform: translate(50%, -50%);
+}
+
+#segment-prepper {
+    bottom: 43%;
+    left: 57%;
+    transform: translate(-50%, 50%);
+}
+
+#segment-burn-manager {
+    bottom: 44%;
+    left: 43%;
+    transform: translate(-50%, 50%);
+}
+
+#segment-de-oxygenator {
+    bottom: 30%;
+    left: 12%;
+    transform: translate(50%, 50%);
+}
+
+#segment-firefighter {
+    bottom: 15%;
+    left:0%;
+    transform: translate(50%, 50%);
+}
+
+#segment-torch-bearer {
+    top: 15%;
+    right: 0%;
+    transform: translate(-50%, -50%);
+}
+
+#segment-tinder-gatherer {
+    bottom: 25%;
+    right: 11%;  
+    transform: translate(-50%, -50%);
+}
+
+#segment-fire-chief {
+    bottom: 15%;
+    right: 25%;
+    transform: translate(50%, 50%);
+}
+
+.segment-definition-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.segment-definition-container h3 {
+    color: #333;
+    font-size: 18px;
+}
+
+
+.segment-definition-container.hidden {
+    display: none;
+}
+
+.segment-definition-container p {
+    color: #555;
+    font-size: 16px;
+}
+
+.overlay {
+    background-color: rgba(255, 255, 255, 0.8); /* Translucent white overlay */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #b65555; /* Side border color */
+}
+
+.content {
+    width: 100%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.8); /* Translucent white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#chart-container {
+    margin-top: 50px;
+}
+
+#chart-container.hidden {
+    display: none;
+}
