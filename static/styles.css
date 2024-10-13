@@ -60,9 +60,12 @@ button:hover {
 }
 
 #quadrant-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: 400px;
     height: 400px;
-    margin-top: 20px;
+    margin-top: 50px;
     position: relative;
 }
 
@@ -349,8 +352,19 @@ button:hover {
     align-items: center;
 }
 
+/* General styling */
 #chart-container {
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically (optional) */
+    margin: 0 auto; /* Center within parent container */
     margin-top: 50px;
+    width: fit-content; /* Make the container fit its contents */
+}
+
+#chart-container table {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #chart-container.hidden {
